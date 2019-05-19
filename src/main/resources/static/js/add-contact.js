@@ -24,7 +24,7 @@ function addContact() {
 		dataType : "json",
 		contentType : "application/json"
 	}).done(function(response) {
-
+		alert(response.firstName +" Saved to db");
 	});
 
 	// console.log(firstName+":"+lastName+":"+mobile+":"+email+":"+address);
