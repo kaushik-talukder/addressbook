@@ -5,8 +5,10 @@
 	<meta charset="ISO-8859-1">
 	<title>Home Page</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/jquery.dataTables.min.css">
 	<link rel="stylesheet" href="css/common.css">
 	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="js/datatables.min.js"></script>
 	<script src="js/common.js"></script>
 	<script src="js/add-contact.js"></script>
 </head>
@@ -61,8 +63,9 @@
 
 	<div class="panel panel-default center">
 		<button class="btn btn-primary" id="show-all-contacts">Show All Contact</button>
+		<br/><br/>
 		<div id="div-all-contacts">
-		
+			<table id="tab-all-contacts" class="display" width="100%"></table>
 		</div>
 	</div>
 

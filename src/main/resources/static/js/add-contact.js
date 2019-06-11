@@ -41,5 +41,30 @@ function showAllContacts(){
 		dataType : "json"
 	}).done(function(response) {
 		console.log(response);
+		$('#tab-all-contacts').DataTable( {
+	        data: response,
+	        columns: [
+	            { 
+	            	title: "First Name",
+	            	data: "firstName"
+	            },
+	            { 
+	            	title: "Last Name",
+	            	data: "lastName"
+	            },
+	            { 
+	            	title: "Mobile",
+	            	data: "mobile"
+	            },
+	            { 
+	            	title: "Email",
+	            	data: "email"
+	            },
+	            { 
+	            	title: "Address",
+	            	data: "address"
+	            }
+	        ]
+	    } );
 	});
 }
