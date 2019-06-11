@@ -41,9 +41,14 @@ function showAllContacts(){
 		dataType : "json"
 	}).done(function(response) {
 		console.log(response);
+		//$('#tab-all-contacts').destroy();
 		$('#tab-all-contacts').DataTable( {
 	        data: response,
 	        columns: [
+	        	{ 
+	            	title: "Id",
+	            	data: "id"
+	            },
 	            { 
 	            	title: "First Name",
 	            	data: "firstName"

@@ -52,10 +52,10 @@ public class AddressBookController {
 	
 	@ResponseBody
 	@RequestMapping(value = {"/deleteContact"})
-	public boolean showAllContacts(@RequestParam(value="contactId") Long contactId) {
+	public boolean showAllContacts(@RequestParam(value="contactId") Long id) {
 		boolean flag = true;
 		try {
-			addressBookRepo.deleteById(contactId);
+			addressBookRepo.deleteById(id);
 		} catch (Exception e) {
 			flag = false;
 			e.printStackTrace();
