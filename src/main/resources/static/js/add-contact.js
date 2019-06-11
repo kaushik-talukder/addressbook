@@ -2,6 +2,10 @@ $(document).ready(function() {
 	$("body").on("click", "#save-contact", function() {
 		addContact();
 	});
+	
+	$("body").on("click", "#show-all-contacts", function() {
+		showAllContacts();
+	});
 });
 
 function addContact() {
@@ -28,4 +32,14 @@ function addContact() {
 	});
 
 	// console.log(firstName+":"+lastName+":"+mobile+":"+email+":"+address);
+}
+
+function showAllContacts(){
+	$.ajax({
+		method : "POST",
+		url : "showAllContacts",
+		dataType : "json"
+	}).done(function(response) {
+		console.log(response);
+	});
 }

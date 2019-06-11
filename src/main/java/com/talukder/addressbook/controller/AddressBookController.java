@@ -1,9 +1,12 @@
 package com.talukder.addressbook.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -38,5 +41,25 @@ public class AddressBookController {
 		AddressBook savedEntity = addressBookRepo.save(newContact);
 		
 		return savedEntity;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = {"/showAllContacts"})
+	public List<AddressBook> showAllContacts() {
+		List<AddressBook> allContacts = addressBookRepo.findAll();
+		return allContacts;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = {"/deleteContact"})
+	public boolean showAllContacts(@RequestParam(value="contactId") Long contactId) {
+		boolean flag = true;
+		try {
+			addressBookRepo.deleteById(contactId);
+		} catch (Exception e) {
+			flag = false;
+			e.printStackTrace();
+		}
+		return flag;
 	}
 }
