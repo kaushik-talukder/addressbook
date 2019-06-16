@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>View All Contacts</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/common.css">
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/datatables.min.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/view-contact.js"></script>
+</head>
+
+<body>
+	<div class="panel panel-default center">
+		<h1>View All Contacts</h1>
+		<hr>
+		<div id="div-all-contacts">
+			<table id="tab-all-contacts" class="display" style="width: 100%">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Mobile</th>
+						<th>Email</th>
+						<th>Address</th>
+						<th>&nbsp;</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="contact : ${allContactsList}">
+						<td th:text="${contact.id}"></td>
+						<td th:text="${contact.firstName}"></td>
+						<td th:text="${contact.lastName}"></td>
+						<td th:text="${contact.mobile}"></td>
+						<td th:text="${contact.email}"></td>
+						<td th:text="${contact.address}"></td>
+						<td>
+							<a th:href="@{'editContactPage?id='+${contact.id}}" id="edit-contact">Edit</a> /
+							<a href="javascript:void(0)" id="delete-contact" th:attr="contactId =${contact.id}">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+
+</html>

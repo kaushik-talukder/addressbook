@@ -20,18 +20,27 @@ public class AddressBookController {
 	@Autowired
 	private AddressBookRepository addressBookRepo;
 
-	@RequestMapping(value = {"/", "/home"})
+	@RequestMapping(value = {"/", "/home", "/addContactPage"})
 	public ModelAndView home() {
-		ModelAndView mv = new ModelAndView("home");
+		ModelAndView mv = new ModelAndView("addEditContact");
+		return mv;
+	}
+	
+	@RequestMapping(value = {"/viewAll"})
+	public ModelAndView viewAllContacts() {
+		ModelAndView mv = new ModelAndView("showAllContacts");
+		List<AddressBook> allContacts = addressBookRepo.findAll();
+		mv.addObject("allContactsList",allContacts);
 		return mv;
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = {"/addContact"})
+	@RequestMapping(value = {"/addEditContact"})
 	public AddressBook addContact(@RequestBody ContactVO contact) {
 		
 		AddressBook newContact = new AddressBook();
 		
+		newContact.setId(contact.getId());
 		newContact.setFirstName(contact.getFirstName());
 		newContact.setLastName(contact.getLastName());
 		newContact.setMobile(contact.getMobile());
@@ -43,6 +52,14 @@ public class AddressBookController {
 		return savedEntity;
 	}
 	
+	@RequestMapping(value = {"/editContactPage"})
+	public ModelAndView editContact(@RequestParam(value="id") Long id) {
+		ModelAndView mv = new ModelAndView("addEditContact");
+		AddressBook existingContact = addressBookRepo.findById(id).get();
+		mv.addObject("contactToEdit", existingContact);
+		return mv;
+	}
+	
 	@ResponseBody
 	@RequestMapping(value = {"/showAllContacts"})
 	public List<AddressBook> showAllContacts() {
@@ -52,7 +69,7 @@ public class AddressBookController {
 	
 	@ResponseBody
 	@RequestMapping(value = {"/deleteContact"})
-	public boolean showAllContacts(@RequestParam(value="contactId") Long id) {
+	public boolean showAllContacts(@RequestParam(value="id") Long id) {
 		boolean flag = true;
 		try {
 			addressBookRepo.deleteById(id);
