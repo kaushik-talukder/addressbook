@@ -26,8 +26,18 @@ function addEditContact() {
 		contentType : "application/json"
 	}).done(function(response) {
 		alert(response.firstName +" Saved to db");
+		resetForm();
 	});
 
 	// console.log(firstName+":"+lastName+":"+mobile+":"+email+":"+address);
+	
+	function resetForm(){
+		$("#first-name").val("");
+		$("#last-name").val("");
+		$("#mobile").val("");
+		$("#email").val("");
+		$("#address").val("");
+		$("#contact-id").val(0);
+	}
 }
 

@@ -17,20 +17,23 @@
 	<div class="panel panel-default center">
 		<h1>Add/Edit Contacts</h1>
 		<hr>
+		<div style="text-align: right;">
+			<a th:href="@{viewAll}">View All Contacts</a>
+		</div>
 		<div class="panel-body">
 			<div class="row row-buffer">
-				<input type="hidden" id="contact-id" th:value="${contactToEdit.id}" />
+				<input type="hidden" id="contact-id" th:value="${contactToEdit == null ? 0 : contactToEdit.id}" />
 				<div class="col-lg-3">
 					<label for="First Name">First Name</label>
 				</div>
 				<div class="col-lg-3">
-					<input class="form-control" id="first-name" type="text" th:value="${contactToEdit.firstName}" />
+					<input class="form-control" id="first-name" type="text" th:value="${contactToEdit == null ? '' : contactToEdit.firstName}" />
 				</div>
 				<div class="col-lg-3">
 					<label for="Last Name">Last Name</label>
 				</div>
 				<div class="col-lg-3">
-					<input class="form-control" id="last-name" type="text" th:value="${contactToEdit.lastName}" />
+					<input class="form-control" id="last-name" type="text" th:value="${contactToEdit == null ? '' : contactToEdit.lastName}" />
 				</div>
 			</div>
 			<div class="row row-buffer">
@@ -38,13 +41,13 @@
 					<label for="Mobile">Mobile #</label>
 				</div>
 				<div class="col-lg-3">
-					<input class="form-control" id="mobile" type="number" th:value="${contactToEdit.mobile}" />
+					<input class="form-control" id="mobile" type="number" th:value="${contactToEdit == null ? '' : contactToEdit.mobile}" />
 				</div>
 				<div class="col-lg-3">
 					<label for="email">Email</label>
 				</div>
 				<div class="col-lg-3">
-					<input class="form-control" id="email" type="email" th:value="${contactToEdit.email}" />
+					<input class="form-control" id="email" type="email" th:value="${contactToEdit == null ? '' : contactToEdit.email}" />
 				</div>
 			</div>
 			<div class="row row-buffer">
@@ -52,7 +55,7 @@
 					<label for="Address">Address</label>
 				</div>
 				<div class="col-lg-3">
-					<textarea class="form-control" id="address" rows="5" cols="" th:text="${contactToEdit.address}"></textarea>
+					<textarea class="form-control" id="address" rows="5" cols="" th:text="${contactToEdit == null? '' : contactToEdit.address}"></textarea>
 				</div>
 			</div>
 			<div class="row row-buffer text-center">
